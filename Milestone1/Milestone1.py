@@ -2,6 +2,7 @@ from concurrent.futures import thread
 import threading
 import datetime
 import time
+from nbformat import write
 import yaml
 
 with open('Milestone1B.yaml', 'r') as file:
@@ -41,7 +42,14 @@ def execWorkFlow(tuple, parent, log):
             execTime = content['Inputs']['ExecutionTime']
             execTime = int(execTime)
             TimeFunction(execTime)
-            log.write(str(time)+";"+fullName+" Executing "+function+"("+str(execTime)+")\n")
+            log.write(str(time)+";"+fullName+" Executing "+function+"(")
+            flag = False
+            for input in content['Inputs']:
+                if(flag):
+                    log.write(",")
+                log.write(content['Inputs'][input])
+                flag = True
+            log.write(")\n")
         else:
             log.write(str(time)+";"+fullName+" Executing "+function+"()\n")
     time = datetime.datetime.now()
