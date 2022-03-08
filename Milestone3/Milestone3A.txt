@@ -1,26 +1,26 @@
-2022-03-08 16:21:38.454999;M3A_Workflow Entry
-2022-03-08 16:21:38.455022;M3A_Workflow.LoadData Entry
-2022-03-08 16:21:38.455026;M3A_Workflow.LoadData Executing DataLoad(Milestone3A_DataInput1.csv)
-2022-03-08 16:21:38.458510;M3A_Workflow.LoadData Exit
-2022-03-08 16:21:38.458517;M3A_Workflow.BinningProcess Entry
-2022-03-08 16:21:38.458654;M3A_Workflow.BinningProcess.BinningFor500 Entry
-2022-03-08 16:21:38.458673;M3A_Workflow.BinningProcess.BinningFor500 Executing Binning(Milestone3A_BinningRule_500.csv)
-2022-03-08 16:21:38.461314;M3A_Workflow.BinningProcess.BinningFor500 Exit
-2022-03-08 16:21:38.461406;M3A_Workflow.BinningProcess.BinningFor501 Entry
-2022-03-08 16:21:38.461526;M3A_Workflow.BinningProcess.BinningFor502 Entry
-2022-03-08 16:21:38.461708;M3A_Workflow.BinningProcess.BinningFor503 Entry
-2022-03-08 16:21:38.461425;M3A_Workflow.BinningProcess.BinningFor501 Executing Binning(Milestone3A_BinningRule_501.csv)
-2022-03-08 16:21:38.465831;M3A_Workflow.BinningProcess.BinningFor501 Exit
-2022-03-08 16:21:38.461541;M3A_Workflow.BinningProcess.BinningFor502 Executing Binning(Milestone3A_BinningRule_502.csv)
-2022-03-08 16:21:38.470067;M3A_Workflow.BinningProcess.BinningFor502 Exit
-2022-03-08 16:21:38.461734;M3A_Workflow.BinningProcess.BinningFor503 Executing Binning(Milestone3A_BinningRule_503.csv)
-2022-03-08 16:21:38.474101;M3A_Workflow.BinningProcess.BinningFor503 Exit
-2022-03-08 16:21:38.474264;M3A_Workflow.BinningProcess.BinningFor504 Entry
-2022-03-08 16:21:38.474288;M3A_Workflow.BinningProcess.BinningFor504 Executing Binning(Milestone3A_BinningRule_504.csv)
-2022-03-08 16:21:38.478708;M3A_Workflow.BinningProcess.BinningFor504 Exit
-2022-03-08 16:21:38.478769;M3A_Workflow.BinningProcess Exit
-2022-03-08 16:21:38.478789;M3A_Workflow.MergeBinningResults Entry
-2022-03-08 16:21:38.478796;M3A_Workflow.MergeBinningResults Exit
-2022-03-08 16:21:38.478799;M3A_Workflow.ExportResult Entry
-2022-03-08 16:21:38.478804;M3A_Workflow.ExportResult Exit
-2022-03-08 16:21:38.478807;M3A_Workflow Exit
+2022-03-08 17:11:53.951555;M3A_Workflow Entry
+2022-03-08 17:11:53.951579;M3A_Workflow.LoadData Entry
+2022-03-08 17:11:53.951584;M3A_Workflow.LoadData Executing DataLoad(Milestone3A_DataInput1.csv)
+2022-03-08 17:11:53.955169;M3A_Workflow.LoadData Exit
+2022-03-08 17:11:53.955178;M3A_Workflow.BinningProcess Entry
+2022-03-08 17:11:53.955343;M3A_Workflow.BinningProcess.BinningFor500 Entry
+2022-03-08 17:11:53.955506;M3A_Workflow.BinningProcess.BinningFor501 Entry
+2022-03-08 17:11:53.955660;M3A_Workflow.BinningProcess.BinningFor502 Entry
+2022-03-08 17:11:53.955678;M3A_Workflow.BinningProcess.BinningFor502 Executing Binning(Milestone3A_BinningRule_502.csv)
+2022-03-08 17:11:53.960025;M3A_Workflow.BinningProcess.BinningFor502 Exit
+2022-03-08 17:11:53.955524;M3A_Workflow.BinningProcess.BinningFor501 Executing Binning(Milestone3A_BinningRule_501.csv)
+2022-03-08 17:11:53.964178;M3A_Workflow.BinningProcess.BinningFor501 Exit
+2022-03-08 17:11:53.955363;M3A_Workflow.BinningProcess.BinningFor500 Executing Binning(Milestone3A_BinningRule_500.csv)
+2022-03-08 17:11:53.966953;M3A_Workflow.BinningProcess.BinningFor500 Exit
+2022-03-08 17:11:53.967040;M3A_Workflow.BinningProcess.BinningFor503 Entry
+2022-03-08 17:11:53.967177;M3A_Workflow.BinningProcess.BinningFor504 Entry
+2022-03-08 17:11:53.967059;M3A_Workflow.BinningProcess.BinningFor503 Executing Binning(Milestone3A_BinningRule_503.csv)
+2022-03-08 17:11:53.970431;M3A_Workflow.BinningProcess.BinningFor503 Exit
+2022-03-08 17:11:53.967196;M3A_Workflow.BinningProcess.BinningFor504 Executing Binning(Milestone3A_BinningRule_504.csv)
+2022-03-08 17:11:53.973424;M3A_Workflow.BinningProcess.BinningFor504 Exit
+2022-03-08 17:11:53.973485;M3A_Workflow.BinningProcess Exit
+2022-03-08 17:11:53.973504;M3A_Workflow.MergeBinningResults Entry
+2022-03-08 17:11:53.992038;M3A_Workflow.MergeBinningResults Exit
+2022-03-08 17:11:53.992055;M3A_Workflow.ExportResult Entry
+2022-03-08 17:11:53.994855;M3A_Workflow.ExportResult Exit
+2022-03-08 17:11:53.994868;M3A_Workflow Exit

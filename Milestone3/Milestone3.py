@@ -1,4 +1,5 @@
 from concurrent.futures import thread
+from fileinput import filename
 import threading
 import datetime
 import time
@@ -100,6 +101,8 @@ def HandleDataLoad(input, id, time, log):
     outputEvent[id+".NoOfDefects"].set()
 
 def Binning(data, rules):
+    if(len(data[0]) < 5):
+        data[0].append('Bincode')
     dataSize = len(data) - 1
     for row in rules:
         row = row.split(',')
@@ -124,14 +127,14 @@ def Binning(data, rules):
             flag = True
             for ruleIndex in range(len(cond)):
                 if(cond[ruleIndex]) == '<':
-                    flag = (int(data[index+1][3]) < thresh[ruleIndex])
+                    flag = flag and (int(data[index+1][3]) < thresh[ruleIndex])
                 elif(cond[ruleIndex]) == '>':
-                    flag = (int(data[index+1][3]) > thresh[ruleIndex])
+                    flag = flag and (int(data[index+1][3]) > thresh[ruleIndex])
             if flag:
-                if(len(data[index]) < 5):
-                    data[index].append(BinID)
+                if(len(data[index+1]) < 5):
+                    data[index+1].append(BinID)
                 else:
-                    data[index][4] = BinID
+                    data[index+1][4] = BinID
     return data, dataSize
 
 def HandleBinning(inputs, fullName, time, log):
@@ -147,12 +150,62 @@ def HandleBinning(inputs, fullName, time, log):
     outputEvent[fullName+".BinningResultsTable"].set()
     if(fullName+".NoOfDefects" not in outputEvent):
         outputEvent[fullName+".NoOfDefects"] = threading.Event()
-    outputStack[fullName+".NoOfDefects"] = BinningResultsTable
+    outputStack[fullName+".NoOfDefects"] = NoOfDefects
     outputEvent[fullName+".NoOfDefects"].set()
     ruleFile.close()
 
+def checkPreced(new, old, preced):
+    for index in range(len(preced)):
+        if new == preced[index]:
+            return True
+        elif old == preced[index]:
+            return False
+    return True
+
 def HandleMergeResults(inputs, fullName, time, log):
-    
+    precedFile = inputs['PrecedenceFile']
+    precedFile = open(precedFile, 'r')
+    precedence = precedFile.readline()
+    precedence = precedence.split()
+    preced = []
+    count = 0
+    merge = []
+    while(count < len(precedence)):
+        preced.append(precedence[count])
+        count = count + 2
+    for key in inputs:
+        if key != "PrecedenceFile":
+            tempData = parseInput(inputs[key])
+            if len(merge) == 0:
+                merge = tempData.copy()
+                continue
+            dataSize = len(tempData) -1
+            for index in range(dataSize):
+                if len(tempData[index+1]) < 5:
+                    continue
+                if len(merge[index+1]) < 5:
+                    merge[index+1].append(tempData[index+1][4])
+                else:
+                    check = checkPreced(merge[index+1][4], tempData[index+1][4], preced)
+                    if check:
+                        merge[index+1][4] = tempData[index+1][4]
+    if(fullName+".MergedResults" not in outputEvent):
+        outputEvent[fullName+".MergedResults"] = threading.Event()
+    outputStack[fullName+".MergedResults"] = merge
+    outputEvent[fullName+".MergedResults"].set()
+    if(fullName+".NoOfDefects" not in outputEvent):
+        outputEvent[fullName+".NoOfDefects"] = threading.Event()
+    outputStack[fullName+".NoOfDefects"] = dataSize
+    outputEvent[fullName+".NoOfDefects"].set()
+    precedFile.close()
+
+def HandleExportResults(inputs, fullName, time, log):
+    filename = inputs['FileName']
+    rows = inputs['DefectTable']
+    rows = parseInput(rows)
+    with open(filename, 'w') as csvfile: 
+        csvwriter = csv.writer(csvfile)
+        csvwriter.writerows(rows)
 
 def execWorkFlow(tuple, parent, log):
     time = datetime.datetime.now()
@@ -194,6 +247,8 @@ def execWorkFlow(tuple, parent, log):
             HandleBinning(content['Inputs'], fullName, time, log)
         elif(function == 'MergeResults'):
             HandleMergeResults(content['Inputs'], fullName, time, log)
+        elif(function == 'ExportResults'):
+            HandleExportResults(content['Inputs'], fullName, time, log)
     time = datetime.datetime.now()
     log.write(str(time)+";"+fullName+" Exit\n")
 
